@@ -1,0 +1,33 @@
+{% extends 'studentapp/index.html' %}
+{% block title %}Update Student{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Update Student Information</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Student Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ student.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="maths_score" class="form-label">Maths Score</label>
+            <input type="number" class="form-control" id="maths_score" name="maths_score" value="{{ student.maths_score }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="physics_score" class="form-label">Physics Score</label>
+            <input type="number" class="form-control" id="physics_score" name="physics_score" value="{{ student.physics_score }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="computer_score" class="form-label">Computer Score</label>
+            <input type="number" class="form-control" id="computer_score" name="computer_score" value="{{ student.computer_score }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{% url 'retrieve_student' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

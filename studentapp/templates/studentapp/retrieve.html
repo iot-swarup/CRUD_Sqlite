@@ -1,0 +1,53 @@
+{% extends 'studentapp/index.html' %}
+{% block title %}Retrieve{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="margin: 20px;">
+        <h1 style="padding-bottom: 20px;">Student list</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Maths</th>
+                    <th scope="col">Physics</th>
+                    <th scope="col">Computer</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.maths_score }}</td>
+                        <td>{{ student.physics_score }}</td>
+                        <td>{{ student.computer_score }}</td>
+                        <td>{{ student.total_score }}</td>
+                        <td>
+                            <a href="{% url 'update_student' student.id %}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'delete_student' student.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if students %}
+            <p>Total Students: {{ students|length }}</p>
+        {% else %}
+            <p>No students found.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+

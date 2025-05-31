@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">CRUD App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{%url 'create_student' %}">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'retrieve_student' %}">Retrieve</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'search_student_by_id' %}">Search by ID</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'search_student_by_name' %}">Search by Name</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'highest_score_student'%}">Highest</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>

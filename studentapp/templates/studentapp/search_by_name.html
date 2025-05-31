@@ -1,0 +1,50 @@
+{% extends 'studentapp/index.html' %}
+{% block title %}Search Student by Name{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Search Student by Name</h2>
+
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="name" class="form-label">Enter Student Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if students is not None %}
+        {% if students %}
+            <h4>Search Results:</h4>
+            <table class="table table-bordered table-striped mt-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Maths</th>
+                        <th>Physics</th>
+                        <th>Computer</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.maths_score }}</td>
+                        <td>{{ student.physics_score }}</td>
+                        <td>{{ student.computer_score }}</td>
+                        <td>{{ student.total_score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Total Matches: {{ students|length }}</p>
+        {% else %}
+            <div class="alert alert-warning mt-3">No students found with that name.</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

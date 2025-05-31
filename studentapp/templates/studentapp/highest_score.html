@@ -1,0 +1,23 @@
+{% extends 'studentapp/index.html' %}
+{% block title %}Highest Scoring Student{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Student with the Highest Total Score</h2>
+
+    {% if student %}
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title">{{ student.name }}</h4>
+                <p class="card-text"><strong>ID:</strong> {{ student.id }}</p>
+                <p class="card-text"><strong>Maths:</strong> {{ student.maths_score }}</p>
+                <p class="card-text"><strong>Physics:</strong> {{ student.physics_score }}</p>
+                <p class="card-text"><strong>Computer:</strong> {{ student.computer_score }}</p>
+                <p class="card-text"><strong>Total Score:</strong> {{ student.total_score }}</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning mt-4">No students available in the database.</div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'studentapp/index.html' %}
+{% block title %}Retrieve{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Search Student by ID</h2>
+
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="id" class="form-label">Enter Student ID:</label>
+                <input type="number" class="form-control" id="id" name="id" min="0" required>
+            </div>
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    {% if student %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Student Details</h5>
+                <p><strong>Name:</strong> {{ student.name }}</p>
+                <p><strong>Maths Score:</strong> {{ student.maths_score }}</p>
+                <p><strong>Physics Score:</strong> {{ student.physics_score }}</p>
+                <p><strong>Computer Score:</strong> {{ student.computer_score }}</p>
+                <p><strong>Total Score:</strong> {{ student.total_score }}</p>
+            </div>
+        </div>
+    {% elif not_found %}
+        <div class="alert alert-warning mt-3">No student found with the given ID.</div>
+    {% endif %}
+</div>
+{% endblock %}
